@@ -1,0 +1,12 @@
+.vscode/
+certs/
+src/
+.editorconfig
+.env.example
+# .eslintignore
+# .eslintrc.js
+.gitignore
+# .prettierrc.js
+README.md
+TODO.md
+.git
