@@ -52,10 +52,11 @@ example:
 
 ✅ Dockerfile of Consumer and Producer services
 
-## Features to implement
-🚧 Connection with DB when consumer read data from kafka topic
+✅ Connection with DB when consumer read data from kafka topic
 
-🚧 Docker hub images
+✅ Docker hub images
+
+## Features to implement
 
 🚧 Pipeline CI/CD 
 

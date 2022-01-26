@@ -51,7 +51,6 @@ export default class MongoDbClient {
       const collection = dbTest.collection(collStr);
       const result = await collection.insertOne(data);
       console.log(`A document was inserted with the _id: ${result.insertedId}`);
-
     } catch (error) {
       throw new Error((
         new Date()).toISOString() + ' - Mongo Error: ' + error);
