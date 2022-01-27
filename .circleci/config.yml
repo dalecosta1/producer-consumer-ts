@@ -15,11 +15,11 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build Docker image producer
-          working_directory: ~/service-producer-ts
+          working_directory: ./service-producer-ts/
           command: docker build -t $PRODUCER_NAME:latest .
       - run:
           name: Build Docker image consumer
-          working_directory: ~/service-consumer-ts
+          working_directory: ./service-consumer-ts/
           command: docker build -t $CONSUMER_NAME:latest .
 
   # push image to docker hub
@@ -32,17 +32,17 @@ jobs:
       - setup_remote_docker
       - run:
           name: Publish Docker Image producer to Docker Hub
-          working_directory: ~/service-producer-ts
+          working_directory: ./service-producer-ts/
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $PRODUCER_NAME:latest
       - run:
           name: Publish Docker Image consumer to Docker Hub
-          working_directory: ~/service-consumer-ts
+          working_directory: ./service-consumer-ts/
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $CONSUMER_NAME:latest
-            
+
 # Every time we push to main.... Build docker image and 
 # then publish it to the docker hub.
 workflows:
