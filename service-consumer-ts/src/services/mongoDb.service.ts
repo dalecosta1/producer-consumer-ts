@@ -38,7 +38,7 @@ export default class MongoDbClient {
   }
 
   /**
-  * This function set the connection with mongo db url.
+  * This function put data on DB.
   * @param {any} jsonObj json object to add in mongoDB
   * @param {string} dbStr db name
   * @param {string} collStr collection name

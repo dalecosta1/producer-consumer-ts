@@ -24,8 +24,9 @@ npm install
 ```bash
 npm run build-ts && node ./dist/index.js
 ```
+
 ## Usage
-Now after that all the services are started, send a request to the webook producer using the following address: http://localhost:5000/partium/echoservice.
+Now after that all the services are started, send a request to the webook producer using the following address: http://localhost:5000/partium/echoservice. Remember to update the URL of mongo db in service-consumer-ts/src/index.ts with your url of mongo db.
 
 Set as authentication basic auth, with following credentials:
 
@@ -33,7 +34,7 @@ username: test
 
 password: test
 
-Subsequently, put some information inside body (fields of the body are free to change based your needs):
+Subsequently, put some information inside body (fields of the body are free to change on the based of your needs. Remember only to update the model of db data in service-consumer-ts/src/models/data.model.ts):
 
 ```bash
 example:
@@ -45,8 +46,34 @@ example:
 }
 ```
 
+## Docker
+You can use also the image of the docker instead of use 
+the code.
+
+## Usage Docker Producer
+After kafka is running execute the docker
+```bash
+cd service-producer-ts 
+docker build -t [NAME] .
+docker run (-d) [NAME]
+```
+
+## Usage Docker Consumer
+After kafka is running execute the docker
+```bash
+cd service-consumer-ts 
+docker build -t [NAME] .
+docker run (-d) [NAME]
+```
+
+## Pipeline CI/CD
+Using circleCI, it is implemented the deploy on docker hub of 
+the images of consumer and producer. If push on main, will start a pipeline
+which create a new docker image and then push it to the docker hub.
+If you want, you can change also the tag with specific version, and the docker image will be availabe on the docker hub. 
+
 ## Features developed
-✅ Docker-compose file kafka
+✅ Docker-compose kafka
 
 ✅ Code of distributed services: Consumer & Producer
 
@@ -56,9 +83,7 @@ example:
 
 ✅ Docker hub images
 
-## Features to implement
-
-🚧 Pipeline CI/CD 
+✅ Pipeline CI/CD
 
 ## Contributing
 @dalecosta1
