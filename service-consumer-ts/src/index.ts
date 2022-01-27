@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 // import { Db } from 'mongodb';
 import KafkaClientService from './services/kafka_client';
 import MongoDbClient from './services/mongoDb.service';
 
-const MONGO_URL = '';
+const MONGO_URL = 'mongodb+srv://admin:rscezMSfEYLHkdcO@clusterdb.qbrlf.mongodb.net/dbUsers?retryWrites=true&w=majority';
 const db = new MongoDbClient();
 db.startConnection(MONGO_URL);
 

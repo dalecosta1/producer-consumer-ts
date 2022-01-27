@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: dalecosta/service-producer-ts:v.01 # the primary container, where your job's commands are run
+    working_directory: ~/service-consumer-ts
+    steps:
+       - checkout
+       - run:
+           name: Deploy main to Github
+           command: |
+             git push https://github.com/dalecosta1/producer-consumer-ts.git main 
+       #auth:
+          #username: mydockerhub-user
+          #password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    #steps:
+      #- checkout # check out the code in the project directory
+      #- run: echo "hello world" # run the `echo` command
