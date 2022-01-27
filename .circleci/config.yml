@@ -13,11 +13,11 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ./service-producer-ts/
-          command: docker build -t dalecosta/service-producer-ts:latest . | docker tag service-producer-ts:latest dalecosta/service-producer-ts:latest
+          command: docker build -t dalecosta/service-producer-ts:latest .
       - run:
           name: Build Docker image consumer
           working_directory: ./service-consumer-ts/
-          command: docker build -t dalecosta/service-consumer-ts:latest . | docker tag service-consumer-ts:latest dalecosta/service-consumer-ts:latest
+          command: docker build -t dalecosta/service-consumer-ts:latest .
 
   # push image to docker hub
   publish-latest:
