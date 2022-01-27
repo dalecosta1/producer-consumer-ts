@@ -1,4 +1,4 @@
-import { Db } from 'mongodb';
+// import { Db } from 'mongodb';
 import KafkaClientService from './services/kafka_client';
 import MongoDbClient from './services/mongoDb.service';
 
@@ -16,6 +16,6 @@ client.on('ready', () => {
 }).on('data', function(data: { value: any; }) {
   console.log(`received message: ${data.value!.toString()}`);
   client.commit();
-  db.putData(JSON.parse(data.value!.toString()), 'dbTest', 'tests')
+  db.putData(JSON.parse(data.value!.toString()), 'dbTest', 'tests');
 });
 

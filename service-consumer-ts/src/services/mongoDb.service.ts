@@ -43,9 +43,9 @@ export default class MongoDbClient {
   * @param {string} dbStr db name
   * @param {string} collStr collection name
   */
-   async putData(jsonObj: any, dbStr: string, collStr: string): Promise<void> {
+  async putData(jsonObj: any, dbStr: string, collStr: string): Promise<void> {
     try {
-      let data = new Data(jsonObj);
+      const data = new Data(jsonObj);
       // console.log(data);
       const dbTest = this._connection.db(dbStr);
       const collection = dbTest.collection(collStr);
@@ -56,5 +56,4 @@ export default class MongoDbClient {
         new Date()).toISOString() + ' - Mongo Error: ' + error);
     }
   }
-
 }
