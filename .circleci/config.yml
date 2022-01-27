@@ -16,11 +16,11 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ./service-producer-ts/
-          command: docker pull $PRODUCER_NAME:latest && docker build -t $PRODUCER_NAME:latest .
+          command: docker pull dalecosta/service-producer-ts:latest && docker build -t $PRODUCER_NAME:latest .
       - run:
           name: Build Docker image consumer
           working_directory: ./service-consumer-ts/
-          command: docker pull $CONSUMER_NAME:latest && docker build -t $CONSUMER_NAME:latest .
+          command: docker pull dalecosta/service-consumer-ts:latest && docker build -t $CONSUMER_NAME:latest .
 
   # push image to docker hub
   publish-latest:
