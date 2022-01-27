@@ -3,8 +3,8 @@ jobs:
   # bulding the docker images
   build:
     environment:
-      PRODUCER_NAME: service-producer-ts
-      CONSUMER_NAME: service-consumer-ts
+      PRODUCER_NAME: dalecosta/service-producer-ts
+      CONSUMER_NAME: dalecosta/service-consumer-ts
     docker:
       - image: circleci/buildpack-deps:stretch
         auth:
@@ -16,11 +16,11 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ./service-producer-ts/
-          command: docker build -t producer .
+          command: docker build -t $PRODUCER_NAME:latest .
       - run:
           name: Build Docker image consumer
           working_directory: ./service-consumer-ts/
-          command: docker build -t consumer .
+          command: docker build -t $CONSUMER_NAME:latest .
 
   # push image to docker hub
   publish-latest:
