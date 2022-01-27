@@ -34,14 +34,14 @@ jobs:
           name: Publish Docker Image producer to Docker Hub
           working_directory: ./service-producer-ts/
           command: |
-            echo ${DOCKERHUB_PASSWORD} 
+            echo "$DOCKERHUB_PASSWORD" 
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin https://index.docker.io/v1/
             docker push $PRODUCER_NAME:latest
       - run:
           name: Publish Docker Image consumer to Docker Hub
           working_directory: ./service-consumer-ts/
           command: |
-            echo ${DOCKERHUB_PASSWORD}
+            echo "DOCKERHUB_PASSWORD"
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin https://index.docker.io/v1/
             docker push $CONSUMER_NAME:latest
 
