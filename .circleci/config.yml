@@ -30,13 +30,13 @@ jobs:
       - run:
           name: Publish Docker Image producer to Docker Hub
           working_directory: ./service-producer-ts/
-          command: docker tag service-producer-ts:latest dalecosta/service-producer-ts | echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin | docker push dalecosta/service-producer-ts:latest
+          command: docker tag service-producer-ts:latest dalecosta/service-producer-ts:latest | echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin | docker push dalecosta/service-producer-ts:latest
           #command: 'docker login -u "$DOCKERHUB_USERNAME" -u "$DOCKERHUB_PASSWORD" && docker push dalecosta/service-producer-ts:latest'
           #command: 'echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin  docker push dalecosta/service-producer-ts:latest'
       - run:
           name: Publish Docker Image consumer to Docker Hub
           working_directory: ./service-consumer-ts/
-          command: docker tag service-producer-ts:latest dalecosta/service-consumer-ts | echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin | docker push dalecosta/service-consumer-ts:latest
+          command: docker tag service-producer-ts:latest dalecosta/service-consumer-ts:latest | echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin | docker push dalecosta/service-consumer-ts:latest
           #command: 'docker login -u "$DOCKERHUB_USERNAME" -u "$DOCKERHUB_PASSWORD" && docker push dalecosta/service-consumer-ts:latest'
           #command: 'echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin  docker push dalecosta/service-consumer-ts:latest'
 
