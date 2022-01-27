@@ -1,5 +1,6 @@
 version: 2
 jobs:
+  # bulding the docker images
   build:
     environment:
       PRODUCER_NAME: dalecosta/service-producer-ts
@@ -15,21 +16,46 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ~/service-producer-ts
-          command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push $PRODUCER_NAME:latest
+          command: docker build -t $PRODUCER_NAME:latest .
       - run:
           name: Build Docker image consumer
           working_directory: ~/service-consumer-ts
+          command: docker build -t $CONSUMER_NAME:latest .
+
+  # push image to docker hub
+  publish-latest:
+    environment:
+      IMAGE_NAME: building-on-ci
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - setup_remote_docker
+      - run:
+          name: Publish Docker Image producer to Docker Hub
+          working_directory: ~/service-producer-ts
           command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push $PRODUCER_NAME:latest
+      - run:
+          name: Publish Docker Image consumer to Docker Hub
+          working_directory: ~/service-consumer-ts
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $CONSUMER_NAME:latest
-              
+            
+# Every time we push to main.... Build docker image and 
+# then publish it to the docker hub.
 workflows:
   version: 2
   build-master:
     jobs:
       - build:
+          filters:
+            branches:
+              only: main
+      - publish-latest:
+          requires:
+            - build
           filters:
             branches:
               only: main
