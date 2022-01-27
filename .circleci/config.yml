@@ -22,6 +22,23 @@ jobs:
           working_directory: ./service-consumer-ts/
           command: docker build -t $CONSUMER_NAME:latest . && docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && docker push docker.io/dalecosta/service-consumer-ts:latest
 
+  # push image to docker hub
+  publish-latest:
+    environment:
+      IMAGE_NAME: building-on-ci
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - setup_remote_docker
+      - run:
+          name: Publish Docker Image producer to Docker Hub
+          working_directory: ./service-producer-ts/
+          command: docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && docker push docker.io/dalecosta/service-producer-ts:latest
+      - run:
+          name: Publish Docker Image consumer to Docker Hub
+          working_directory: ./service-consumer-ts/
+          command: docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && docker push docker.io/dalecosta/service-consumer-ts:latest
+
 # Every time we push to main.... Build docker image and 
 # then publish it to the docker hub.
 workflows:
