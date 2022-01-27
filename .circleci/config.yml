@@ -2,9 +2,6 @@ version: 2
 jobs:
   # bulding the docker images
   build:
-    environment:
-      PRODUCER_NAME: dalecosta/service-producer-ts
-      CONSUMER_NAME: dalecosta/service-consumer-ts
     docker:
       - image: circleci/buildpack-deps:stretch
         auth:
@@ -36,14 +33,14 @@ jobs:
           command:
             echo "$DOCKERHUB_PASSWORD"
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push "$PRODUCER_NAME":v0.2
+            docker push dalecosta/service-producer-ts:v0.2
       - run:
           name: Publish Docker Image consumer to Docker Hub
           working_directory: ./service-consumer-ts/
           command: 
             echo "$DOCKERHUB_PASSWORD"
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin 
-            docker push "$CONSUMER_NAME":v0.2
+            docker push dalecosta/service-consumer-ts:v0.2
 
 # Every time we push to main.... Build docker image and 
 # then publish it to the docker hub.
