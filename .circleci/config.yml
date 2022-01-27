@@ -16,11 +16,11 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ./service-producer-ts/
-          command: docker pull dalecosta/service-producer-ts:0.1 && docker build -t $PRODUCER_NAME:latest .
+          command: docker build -t $PRODUCER_NAME:latest . && docker tag $(docker image ls | grep "<none>" | awk '{print $3}') dalecosta/service-producer-ts:latest
       - run:
           name: Build Docker image consumer
           working_directory: ./service-consumer-ts/
-          command: docker pull dalecosta/service-consumer-ts:0.1 && docker build -t $CONSUMER_NAME:latest .
+          command: docker build -t $CONSUMER_NAME:latest . && docker tag $(docker image ls | grep "<none>" | awk '{print $3}') dalecosta/service-consumer-ts:latest # docker pull dalecosta/service-consumer-ts:0.1 && 
 
   # push image to docker hub
   publish-latest:
