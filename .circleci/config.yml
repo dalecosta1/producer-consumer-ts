@@ -3,8 +3,8 @@ jobs:
   # bulding the docker images
   build:
     environment:
-      PRODUCER_NAME: dalecosta/service-producer-ts
-      CONSUMER_NAME: dalecosta/service-consumer-ts
+      PRODUCER_NAME: service-producer-ts
+      CONSUMER_NAME: service-consumer-ts
     docker:
       - image: circleci/buildpack-deps:stretch
         auth:
@@ -55,4 +55,3 @@ workflows:
           filters:
             branches:
               only: main 
-
