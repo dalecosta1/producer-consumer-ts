@@ -33,7 +33,7 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASSWORD" |
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin &&
-            docker push dalecosta/service-producer-ts:
+            docker push dalecosta/service-producer-ts:latest
       - run:
           name: Publish Docker Image consumer to Docker Hub
           working_directory: ./service-consumer-ts/
