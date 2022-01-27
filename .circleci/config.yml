@@ -16,11 +16,11 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ./service-producer-ts/
-          command: docker build -t $PRODUCER_NAME:latest . && docker tag $(docker image ls | grep "<none>" | awk '{print $3}') dalecosta/service-producer-ts:latest
+          command: docker build -t $PRODUCER_NAME:latest .
       - run:
           name: Build Docker image consumer
           working_directory: ./service-consumer-ts/
-          command: docker build -t $CONSUMER_NAME:latest . && docker tag $(docker image ls | grep "<none>" | awk '{print $3}') dalecosta/service-consumer-ts:latest # docker pull dalecosta/service-consumer-ts:0.1 && 
+          command: docker build -t $CONSUMER_NAME:latest . # docker pull dalecosta/service-consumer-ts:0.1 && 
 
   # push image to docker hub
   publish-latest:
@@ -33,11 +33,11 @@ jobs:
       - run:
           name: Publish Docker Image producer to Docker Hub
           working_directory: ./service-producer-ts/
-          command: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin docker.io/dalecosta/service-producer-ts && docker push dalecosta/service-producer-ts:latest
+          command: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin && docker push docker.io/dalecosta/service-producer-ts:latest
       - run:
           name: Publish Docker Image consumer to Docker Hub
           working_directory: ./service-consumer-ts/
-          command: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin docker.io/dalecosta/service-consumer-ts && docker push dalecosta/service-consumer-ts:latest
+          command: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin && docker push docker.io/dalecosta/service-consumer-ts:latest
 
 # Every time we push to main.... Build docker image and 
 # then publish it to the docker hub.
