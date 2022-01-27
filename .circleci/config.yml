@@ -33,14 +33,14 @@ jobs:
           command:
             echo "$DOCKERHUB_PASSWORD"
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push dalecosta/service-producer-ts:latest
+            docker push dalecosta/service-producer-ts:0.2
       - run:
           name: Publish Docker Image consumer to Docker Hub
           working_directory: ./service-consumer-ts/
           command: 
             echo "$DOCKERHUB_PASSWORD"
             docker login -u "$DOCKERHUB_USERNAME" --password-stdin 
-            docker push dalecosta/service-consumer-ts:latest
+            docker push dalecosta/service-consumer-ts:0.2
 
 # Every time we push to main.... Build docker image and 
 # then publish it to the docker hub.
@@ -58,4 +58,3 @@ workflows:
           filters:
             branches:
               only: main 
-                      
