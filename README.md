@@ -82,6 +82,8 @@ If you want, you can change also the tag with specific version, and the docker i
 ✅ Connection with DB when consumer read data from kafka topic
 
 ✅ Docker hub images
+    service-producer-consumer: https://hub.docker.com/repository/docker/dalecosta/service-producer-ts
+    service-consumer-ts: https://hub.docker.com/repository/docker/dalecosta/service-consumer-ts
 
 ✅ Pipeline CI/CD
 
