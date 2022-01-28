@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 /**
- * This is the model of the collection on the dbTest called test.
+ * This is the model of the collection on the dbTest called tests.
  */
 export const DataSchema = new mongoose.Schema({
   field1: {type: String, required: true},

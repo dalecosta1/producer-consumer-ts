@@ -16,11 +16,15 @@ jobs:
       - run:
           name: Build Docker image producer
           working_directory: ./service-producer-ts/
-          command: docker build -t $PRODUCER_NAME:0.3 . && docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && docker push docker.io/dalecosta/service-producer-ts:0.3
+          command: docker build -t $PRODUCER_NAME:latest . && 
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && 
+            docker push docker.io/dalecosta/service-producer-ts:latest
       - run:
           name: Build Docker image consumer
           working_directory: ./service-consumer-ts/
-          command: docker build -t $CONSUMER_NAME:0.3 . && docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && docker push docker.io/dalecosta/service-consumer-ts:0.3
+          command: docker build -t $CONSUMER_NAME:latest . && 
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" && 
+            docker push docker.io/dalecosta/service-consumer-ts:latest
 
   # push image to docker hub
   publish-latest:

@@ -3,7 +3,7 @@
 import KafkaClientService from './services/kafka_client';
 import MongoDbClient from './services/mongoDb.service';
 
-const MONGO_URL = ''; // Put your URL address here
+const MONGO_URL = ''; // Put your monfo db URL address here
 const db = new MongoDbClient();
 db.startConnection(MONGO_URL);
 

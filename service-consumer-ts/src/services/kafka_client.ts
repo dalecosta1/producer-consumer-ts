@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
 import kafka from 'node-rdkafka';
 
-
 /**
- * aaa
+ * Kafka client service.
  */
 export default class KafkaClientService {
   stringConnection: string;
   /**
-   * sss
+   * Constructor of class, passing
+   * by argument the connection string with the broker.
    * @param {string} kafkaHost
    */
   constructor(kafkaHost: string) {
@@ -16,7 +16,7 @@ export default class KafkaClientService {
   }
 
   /**
-   * sdasds
+   * Consumer class.
    * @return {kafka.Consumer}
    */
   startInit(): kafka.KafkaConsumer {
