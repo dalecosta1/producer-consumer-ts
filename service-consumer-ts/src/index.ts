@@ -3,7 +3,7 @@
 import KafkaClientService from './services/kafka_client';
 import MongoDbClient from './services/mongoDb.service';
 
-const MONGO_URL = ''; // Put your monfo db URL address here
+const MONGO_URL = 'mongodb+srv://admin:rscezMSfEYLHkdcO@clusterdb.qbrlf.mongodb.net/dbUsers?retryWrites=true&w=majority'; // Put your monfo db URL address here
 const db = new MongoDbClient();
 db.startConnection(MONGO_URL);
 
